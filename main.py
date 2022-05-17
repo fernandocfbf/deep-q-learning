@@ -6,7 +6,10 @@ import numpy as np
 from src.utils.NeuralNetwork import generateNetwork
 
 #classes
+from src.classes.DeepQLearning import DeepQLearning
 
+#constants
+from src.constants.DeepQLearning import *
 
 env = gym.make('LunarLander-v2')
 env.seed(0)
@@ -19,6 +22,8 @@ def main():
         loss_function="mse",
         learning_rate=0.001
     )
+    deepQLearning = DeepQLearning()
+
 
 if __name__ == "main":
     main()
