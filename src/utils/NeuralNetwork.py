@@ -23,11 +23,11 @@ def generateNetwork(
         model.compile(loss=loss_function, optimizer=Adam(learning_rate=learning_rate))
         return model
 
-def saveModel(model, path="lunar-lander"):
+def saveModel(model, algorithm="deep", path="lunar-lander"):
         '''
         saves a given keras model to the data path
         '''
-        model.save("src/data/{0}".format(path))
+        model.save("src/data/{1}/{0}".format(algorithm, path))
 
-def loadModel(path="lunar-lander"):
-        return keras.models.load_model("src/data/{0}".format(path), compile=False)
+def loadModel(path="lunar-lander", algorithm="deep"):
+        return keras.models.load_model("src/data/{1}/{0}".format(algorithm, path), compile=False)
