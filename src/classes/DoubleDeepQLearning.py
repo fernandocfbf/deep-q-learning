@@ -2,7 +2,7 @@ import numpy as np
 import random
 from keras.activations import relu, linear
 
-class DeepQLearning:
+class DoubleDeepQLearning:
 
     #
     # Implementacao do algoritmo proposto em 
@@ -10,7 +10,7 @@ class DeepQLearning:
     # https://arxiv.org/abs/1312.5602
     #
 
-    def __init__(self, env, gamma, epsilon, epsilon_min, epsilon_dec, episodes, batch_size, memory, model):
+    def __init__(self, env, gamma, epsilon, epsilon_min, epsilon_dec, episodes, batch_size, memory, steps, model):
         self.env = env
         self.gamma = gamma
         self.epsilon = epsilon
@@ -21,6 +21,7 @@ class DeepQLearning:
         self.memory = memory
         self.model_primary = model
         self.model_secondary = model
+        self.max_steps = steps
 
     def select_action(self, state):
         if np.random.rand() < self.epsilon:
@@ -69,7 +70,7 @@ class DeepQLearning:
             state = self.env.reset()
             state = np.reshape(state, (1, self.env.observation_space.shape[0]))
             score = 0
-            max_steps = 200 # o numero de steps para cada env pode mudar. lunarland = 3000
+            max_steps = self.max_steps # o numero de steps para cada env pode mudar. lunarland = 3000
             # de qualquer forma, quando terminal = True entao o episodio termina.
             for _ in range(max_steps):
                 action = self.select_action(state)

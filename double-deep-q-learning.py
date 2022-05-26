@@ -16,7 +16,7 @@ state = env.reset()
 env.reset(seed=0)
 np.random.seed(0)
 
-my_model = loadModel(algorithm=="double-deep")
+my_model = loadModel(algorithm="double-deep")
 done = False
 rewards = 0
 steps = 0

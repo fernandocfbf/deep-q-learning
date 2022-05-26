@@ -31,6 +31,7 @@ deepQLearning = DeepQLearning(
     episodes=EPISODES,
     batch_size=BATCH_SIZE,
     memory=MEMORY,
+    steps=MAX_STEPS,
     model=my_model)
 rewards  = deepQLearning.train()
 rewardsEpisodes(rewards)

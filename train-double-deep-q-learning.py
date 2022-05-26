@@ -7,7 +7,7 @@ from src.utils.NeuralNetwork import generateNetwork, saveModel
 from src.utils.PlotRewardsEpisodes import rewardsEpisodes
 
 #classes
-from src.classes.DeepQLearning import DeepQLearning
+from src.classes.DoubleDeepQLearning import DoubleDeepQLearning
 
 #constants
 from src.constants.DeepQLearning import *
@@ -22,7 +22,7 @@ my_model = generateNetwork(
     loss_function="mse",
     learning_rate=0.001
 )
-deepQLearning = DeepQLearning(
+deepQLearning = DoubleDeepQLearning(
     env=env,
     gamma=GAMMA,
     epsilon=EPSILON,
@@ -31,7 +31,8 @@ deepQLearning = DeepQLearning(
     episodes=EPISODES,
     batch_size=BATCH_SIZE,
     memory=MEMORY,
+    steps=MAX_STEPS,
     model=my_model)
 rewards  = deepQLearning.train()
 rewardsEpisodes(rewards, algorithm="double-deep")
-saveModel(deepQLearning.model, algorithm="double-deep")
+saveModel(deepQLearning.model_secondary, algorithm="double-deep")
