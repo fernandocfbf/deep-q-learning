@@ -33,5 +33,5 @@ deepQLearning = DeepQLearning(
     memory=MEMORY,
     model=my_model)
 rewards  = deepQLearning.train()
-rewardsEpisodes(rewards)
+rewardsEpisodes(rewards, algorithm="double-deep")
 saveModel(deepQLearning.model, algorithm="double-deep")
