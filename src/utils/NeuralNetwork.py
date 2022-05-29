@@ -15,9 +15,11 @@ def generateNetwork(
         constructor.
         '''
         model = Sequential()
-        model.add(Dense(34, activation=relu, input_dim=input_shape))
-        model.add(Dense(21, activation=relu))
-        model.add(Dense(13, activation=relu))
+        model.add(Dense(512, activation=relu, input_dim=input_shape))
+        model.add(Dense(256, activation=relu))
+        model.add(Dense(128, activation=relu))
+        model.add(Dense(64, activation=relu))
+        model.add(Dense(32, activation=relu))
         model.add(Dense(output_shape, activation=linear))
         model.summary()
         model.compile(loss=loss_function, optimizer=Adam(learning_rate=learning_rate))
