@@ -48,10 +48,10 @@ class DoubleDeepQLearning:
             next_states = np.squeeze(next_states)
 
             # usando o modelo para selecionar as melhores acoes
-            next_max = np.amax(self.model_secondary.predict_on_batch(next_states), axis=1)
+            next_max = np.amax(self.model_primary.predict_on_batch(next_states), axis=1)
             
             targets = rewards + self.gamma * (next_max) * (1 - terminals)
-            targets_full = self.model_secondary.predict_on_batch(states)
+            targets_full = self.model_primary.predict_on_batch(states)
             indexes = np.array([i for i in range(self.batch_size)])
             
             # usando os q-valores para atualizar os pesos da rede
